@@ -1,4 +1,4 @@
-# EV-002 — Strategizing Work Products
+# ST.EV-002 — Strategizing Work Products
 
 ## Claim supported
 Strategizing produces specific work products (lists of dissatisfactions, projects, priorities, criteria, methods, drafts).

@@ -1,4 +1,4 @@
-# EV-001 — Strategic Session Agenda (Strategizing)
+# ST.EV-001 — Strategic Session Agenda (Strategizing)
 
 ## Claim supported
 Regular weekly strategizing session with prepared agenda is a required element of the practice.
