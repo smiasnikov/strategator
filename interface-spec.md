@@ -55,14 +55,16 @@ Layer 1 (static, ~6K tokens):
   CLAUDE.md + bounded-context/ + capabilities.md
   → Always loaded. Defines agent identity, roles, rules.
 
-Layer 2 (method, ~3K tokens per step):
+Layer 2 (method, ~2-3K tokens per step):
   Relevant method/ files for the current session step
   → Loaded on demand. E.g., method/04 for project prioritization.
 
-Layer 3 (sources, ~31K tokens for L0):
+Layer 3 (sources, ~31K tokens):
   sources/self-development-methods/08-strategizing/ (~17K)
   sources/self-development-methods/09-planning/ (~14K)
-  → Full sections loaded at L0-L2. At L3: all sections (~130K).
+  → NOT loaded at L0 (removed per ST.DRR-005: source rules encoded in MethodDescriptions).
+  → At L3: all sections (~130K) — full multi-practice context (re-evaluated then).
+  → Source fidelity for L0 validated offline via pre-launch gate (TC-004 + TC-005).
 
 Layer 4 (session history, variable):
   Previous session records from Obsidian vault
@@ -73,12 +75,15 @@ Layer 5 (incoming context, variable):
   → Not loaded at L0-L1. At L2+: pre-processed summaries.
 ```
 
-### L0 total context: ~40K tokens (L1+L2+L3)
-Full-context approach. No RAG needed. All sources loaded in system prompt.
+### L0 total context: ~8-10K tokens (L1+L2 only)
+Skills-only approach. Source rules encoded in MethodDescriptions (A.3.2). No raw sources in production context.
+Decision: ST.DRR-005 (2026-02-18).
 
 ### Source fidelity guarantee
-At L0, all source material is in context → agent can reference exact source passages.
-This is the highest achievable fidelity level. Testing should verify agent uses source knowledge correctly (see Open Questions, section 10).
+At L0, source rules are carried by MethodDescriptions (auditable, versioned, testable).
+Pre-launch gate: **TC-004 and TC-005 must pass without sources in context before first production session.**
+If a test fails: update the relevant MethodDescription with the missing rule and re-run.
+At L3+: full source material re-evaluated for loading (MethodDescriptions may not yet cover all practices).
 
 ## 5. Session Flow
 
